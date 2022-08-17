@@ -1,6 +1,78 @@
 {
   "slices": {
     "components": {
+      "category_overview": {
+        "library": "slices",
+        "id": "category_overview",
+        "name": "CategoryOverview",
+        "description": "CategoryOverview",
+        "model": {
+          "id": "category_overview",
+          "type": "SharedSlice",
+          "name": "CategoryOverview",
+          "description": "CategoryOverview",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "CategoryOverview",
+              "primary": {
+                "title": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "heading1",
+                    "label": "Title",
+                    "placeholder": "This is where it all begins..."
+                  }
+                },
+                "description": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Description",
+                    "placeholder": "A nice description of your feature"
+                  }
+                }
+              },
+              "items": {},
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {}
+            ],
+            "primary": {
+              "title": [
+                {
+                  "type": "heading1",
+                  "text": "Volume",
+                  "spans": []
+                }
+              ],
+              "description": [
+                {
+                  "type": "paragraph",
+                  "text": "Amet elit pariatur sint Lorem culpa id. Non excepteur eu culpa. Sit labore anim nulla pariatur excepteur sunt non anim nisi sit exercitation pariatur anim labore adipisicing.",
+                  "spans": []
+                }
+              ]
+            },
+            "slice_type": "category_overview"
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {}
+      },
       "contact_form": {
         "library": "slices",
         "id": "contact_form",

@@ -59,7 +59,6 @@ const Article = ({ article }) => {
             />
           )}
         </div>
-        <p>hier</p>
       </PrismicLink>
       <div className="grid grid-cols-1 gap-3 md:col-span-2">
         <Heading as="h2">
@@ -80,62 +79,10 @@ const Article = ({ article }) => {
   );
 };
 
-const getAssortimentsByCategory = (id, assortiments) => {
-  const assortimentsByCategory = [];
-  assortiments.forEach((assortiment) => {
-    if(assortiment.data.category.id === id) {
-      assortimentsByCategory.push(assortiment)
-    }
-  });
-  return({
-    assortimentsByCategory,
-  })
-}
-
-const getProductsByAssortiment = (assortiments, products) => {
-  const assortimentOverviewItems = [];
-  assortiments.forEach((assortiment) => {
-    const assortimentOverviewItem = {
-      title: assortiment.data.name,
-      products: [],
-    };
-    products.forEach((product) => {
-      if (product.data.assortiment.id === assortiment.id) {
-        assortimentOverviewItem.products.push(product);
-      }
-    })
-    assortimentOverviewItems.push(assortimentOverviewItem)
-  })
-  return({
-    assortimentOverviewItems,
-  })
-}
-
-const Overview = ({ category, assortiments, products }) => {
-  const { assortimentsByCategory } = getAssortimentsByCategory(category.id, assortiments);
-  const { assortimentOverviewItems } = getProductsByAssortiment(assortimentsByCategory, products);
-  console.log(assortimentOverviewItems);
-  return(
-    <div>
-      <p>{category.data.name}</p>
-      {assortimentOverviewItems.map((productByAssortiment) => (
-          <>
-          <p>{productByAssortiment.title}</p>
-          <ul>
-          {productByAssortiment.products.map((product) => (
-            <p>{ product.data.name }</p>
-          ))}
-        </ul>
-        </>
-      ))}
-    </div>
-  )
-}
-
-const Index = ({ articles, categories, assortiments, products, navigation, settings }) => {
+const Index = ({ articles, navigation, settings }) => {
   return (
     <Layout
-      withHeaderDivider={true}
+      withHeaderDivider={false}
       navigation={navigation}
       settings={settings}
     >
@@ -143,19 +90,11 @@ const Index = ({ articles, categories, assortiments, products, navigation, setti
         <title>{prismicH.asText(settings.data.name)}</title>
       </Head>
       <Bounded size="widest">
-
         <ul className="grid grid-cols-1 gap-16">
-          { categories.map((category) => (
-            <li>
-              <Overview category={category} assortiments={assortiments} products={products} />
-            </li>
-          )) }
-        </ul>
-        {/* <ul className="grid grid-cols-1 gap-16">
           {articles.map((article) => (
             <Article key={article.id} article={article} />
           ))}
-        </ul> */}
+        </ul>
       </Bounded>
     </Layout>
   );
@@ -172,34 +111,12 @@ export async function getStaticProps({ previewData }) {
       { field: "document.first_publication_date", direction: "desc" },
     ],
   });
-  const categories = await client.getAllByType("category", {
-    orderings: [
-      // { field: "my.category.publishDate", direction: "desc" },
-      { field: "document.first_publication_date", direction: "desc" },
-    ],
-  });
-  const assortiments = await client.getAllByType("assortiment", {
-    orderings: [
-      // { field: "my.category.publishDate", direction: "desc" },
-      { field: "document.first_publication_date", direction: "desc" },
-    ],
-  });
-  const products = await client.getAllByType("product", {
-    orderings: [
-      // { field: "my.category.publishDate", direction: "desc" },
-      { field: "document.first_publication_date", direction: "desc" },
-    ],
-  });
-
   const navigation = await client.getSingle("navigation");
   const settings = await client.getSingle("settings");
 
   return {
     props: {
       articles,
-      categories,
-      assortiments,
-      products,
       navigation,
       settings,
     },

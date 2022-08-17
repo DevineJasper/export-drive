@@ -18,6 +18,16 @@
           "label": "Name",
           "placeholder": ""
         }
+      },
+      "assortiment": {
+        "type": "Link",
+        "config": {
+          "label": "Assortiment",
+          "select": "document",
+          "customtypes": [
+            "assortiment"
+          ]
+        }
       }
     }
   }

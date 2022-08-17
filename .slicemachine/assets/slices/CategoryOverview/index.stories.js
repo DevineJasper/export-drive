@@ -1,0 +1,9 @@
+import MyComponent from '../../../../slices/CategoryOverview';
+
+export default {
+  title: 'slices/CategoryOverview'
+}
+
+
+export const _Default = () => <MyComponent slice={{"variation":"default","version":"sktwi1xtmkfgx8626","items":[{}],"primary":{"title":[{"type":"heading1","text":"Volume","spans":[]}],"description":[{"type":"paragraph","text":"Amet elit pariatur sint Lorem culpa id. Non excepteur eu culpa. Sit labore anim nulla pariatur excepteur sunt non anim nisi sit exercitation pariatur anim labore adipisicing.","spans":[]}]},"slice_type":"category_overview","id":"_Default"}} />
+_Default.storyName = ''
