@@ -116,17 +116,17 @@ const Overview = ({ category, assortiments, products }) => {
   const { assortimentOverviewItems } = getProductsByAssortiment(assortimentsByCategory, products);
   console.log(assortimentOverviewItems);
   return(
-    <div>
-      <p>{category.data.name}</p>
+    <div className="mb-12">
+      <h2 className="font-bold leading-tight text-gray-900 text-5xl">{category.data.name}</h2>
       {assortimentOverviewItems.map((productByAssortiment) => (
-          <>
-          <p>{productByAssortiment.title}</p>
+          <div className="my-8">
+          <h3 className="font-bold leading-tight text-gray-900 text-2xl">{productByAssortiment.title}</h3>
           <ul>
           {productByAssortiment.products.map((product) => (
-            <p>{ product.data.name }</p>
+            <li className="leading-loosex text-gray-900">{ product.data.name }</li>
           ))}
         </ul>
-        </>
+        </div>
       ))}
     </div>
   )
